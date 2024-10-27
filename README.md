@@ -61,8 +61,8 @@ To get started , follow these steps to set up your environment and install the n
 ### Step 1: Clone the Repository
 First, clone the repository to your local machine:
 ```bash
-git clone https://github.com/shubhamade79/Sentiment-Based-Summarized-News-Recommendations-with-Opinion-Mining.git
-cd Sentiment-Based-Summarized-News-Recommendations-with-Opinion-Mining
+git clone https://github.com/shubhamade79/Final_Project-With-Sentiment-Analaysis-and-DataBase.git
+cd Final_Project-With-Sentiment-Analaysis-and-DataBase
 ```
 
 ### Step 2: Install Dependencies
