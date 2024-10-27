@@ -17,18 +17,33 @@ To get started , follow these steps to set up your environment and install the n
     Open a MySQL Workbench client and run the following commands to create the database and table:
 
     ```sql
-    CREATE DATABASE IF NOT EXISTS `login` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-    USE `login`;
+            CREATE DATABASE IF NOT EXISTS `login` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+            USE `login`;
+            
+            CREATE TABLE IF NOT EXISTS `accounts` (
+            	`id` int(11) NOT NULL AUTO_INCREMENT,
+            	`username` varchar(50) NOT NULL,
+            	`password` varchar(255) NOT NULL,
+            	`email` varchar(100) NOT NULL,
+            	PRIMARY KEY (`id`)
+            );
+            
+            ALTER TABLE accounts ADD preferences TEXT;
+            
+            CREATE TABLE articles (
+                `id` INT AUTO_INCREMENT PRIMARY KEY,
+                `title` VARCHAR(255),
+                `link` TEXT,
+                `full_text` TEXT,
+                `summary` TEXT,
+                `question` TEXT,
+                `image_url` TEXT,
+                `category` VARCHAR(255)
+            );
+            
+            ALTER TABLE articles ADD COLUMN sentiment VARCHAR(10);
+            ALTER TABLE articles ADD COLUMN timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 
-    CREATE TABLE IF NOT EXISTS `accounts` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `username` varchar(50) NOT NULL,
-        `password` varchar(255) NOT NULL,
-        `email` varchar(100) NOT NULL,
-        PRIMARY KEY (`id`)
-    );
-
-    ALTER TABLE `accounts` ADD `preferences` TEXT;
     ```
 
 2. Configure the database connection in `app.py`:
@@ -49,32 +64,29 @@ First, clone the repository to your local machine:
 git clone https://github.com/shubhamade79/Sentiment-Based-Summarized-News-Recommendations-with-Opinion-Mining.git
 cd Sentiment-Based-Summarized-News-Recommendations-with-Opinion-Mining
 ```
-### Step 2: Create a Virtual Environment
-It's recommended to create a virtual environment to manage dependencies:
-```bash
-python -m venv venv
-source venv/bin/activate  # For Unix or MacOS
-venv\Scripts\activate  # For Windows
-```
 
-### Step 3: Install Dependencies
+### Step 2: Install Dependencies
 Install all the required libraries using pip:
+Backend
 ```bash
-pip install -r requirements.txt
+pip install Flask transformers requests beautifulsoup4 flask-mysqldb textblob apscheduler mysqlclient
 ```
-If Doesn't Execute or Not Install Properly Then Install Manually
+Frontend
+```
+pip install Flask flask-mysqldb mysqlclient
+
+```
+### Step 3: Run App.py File
 ```bash
-pip install flask requests beautifulsoup4 flask-mysqldb mysqlclient transformers torch
+python app.py  
 ```
-### Step 4: Run App.py File
+And
 ```bash
-flask run
+python show_articles.py
 ```
-If Doesn't Create the Virtual Environment Then Run Program By
-```bash
-python app.py
-```
-### Step 5: Click the link On Terminal Then Open The Website
+### Step 4: Click the link On Terminal Then Open The Website
 ```bash
 (http://127.0.0.1:5000)
+And
+(http://127.0.0.1:5001)
 ```
